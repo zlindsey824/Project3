@@ -11,13 +11,13 @@ void MultiSprite::advanceFrame(Uint32 ticks) {
 }
 
 MultiSprite::MultiSprite( const std::string& name) :
-  Drawable(name, 
-           Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"), 
-                    Gamedata::getInstance().getXmlInt(name+"/startLoc/y")), 
+  Drawable(name,
+           Vector2f(Gamedata::getInstance().getXmlInt(name+"/startLoc/x"),
+                    Gamedata::getInstance().getXmlInt(name+"/startLoc/y")),
            Vector2f(Gamedata::getInstance().getXmlInt(name+"/speedX"),
                     Gamedata::getInstance().getXmlInt(name+"/speedY"))
            ),
-  images( ImageFactory::getInstance()->getImages(name) ),
+  images( ImageFactory::getInstance().getImages(name) ),
 
   currentFrame(0),
   numberOfFrames( Gamedata::getInstance().getXmlInt(name+"/frames") ),
@@ -27,11 +27,11 @@ MultiSprite::MultiSprite( const std::string& name) :
   worldHeight(Gamedata::getInstance().getXmlInt("world/height"))
 { }
 
-void MultiSprite::draw() const { 
+void MultiSprite::draw() const {
   images[currentFrame]->draw(getX(), getY(), getScale());
 }
 
-void MultiSprite::update(Uint32 ticks) { 
+void MultiSprite::update(Uint32 ticks) {
   advanceFrame(ticks);
 
   Vector2f incr = getVelocity() * static_cast<float>(ticks) * 0.001;
@@ -49,6 +49,6 @@ void MultiSprite::update(Uint32 ticks) {
   }
   if ( getX() + getScaledWidth() > worldWidth) {
     setVelocityX( -fabs( getVelocityX() ) );
-  }  
+  }
 
 }

@@ -16,7 +16,7 @@ public:
   Engine(const Engine&) = delete;
   Engine& operator=(const Engine&) = delete;
 private:
-  const RenderContext* rc;
+  const RenderContext& rc;
   const IoMod& io;
   Clock& clock;
 

@@ -10,7 +10,7 @@
 #include "engine.h"
 #include "frameGenerator.h"
 
-Engine::~Engine() { 
+Engine::~Engine() {
   delete star;
   delete spinningStar;
   std::cout << "Terminating program" << std::endl;
@@ -20,7 +20,7 @@ Engine::Engine() :
   rc( RenderContext::getInstance() ),
   io( IoMod::getInstance() ),
   clock( Clock::getInstance() ),
-  renderer( rc->getRenderer() ),
+  renderer( rc.getRenderer() ),
   world("back", Gamedata::getInstance().getXmlInt("back/factor") ),
   viewport( Viewport::getInstance() ),
   star(new Sprite("YellowStar")),
@@ -28,7 +28,7 @@ Engine::Engine() :
   currentSprite(0),
   makeVideo( false )
 {
-  star->setScale(1.5); 
+  star->setScale(1.5);
   Viewport::getInstance().setObjectToTrack(star);
   std::cout << "Loading complete" << std::endl;
 }
