@@ -10,11 +10,21 @@ ImageFactory* ImageFactory::getInstance() {
 ImageFactory::~ImageFactory() {
   std::cout << "Deleting images in Factory" << std::endl;
   // Free single image containers
-  for(auto& si : surfaces) SDL_FreeSurface(si.second);
-  for(auto& ti : textures) SDL_DestroyTexture(ti.second);
-  for(auto& fi : images  ) {
-    std::cout << "deleting " << fi.first << std::endl;
-    delete fi.second;
+  std::map<std::string, SDL_Surface*>::iterator si = surfaces.begin() ;
+  std::map<std::string, SDL_Texture*>::iterator ti = textures.begin() ; 
+  std::map<std::string, Image*>::iterator fi = images.begin() ; 
+  while(si != surfaces.end()) {
+  	SDL_FreeSurface(si->second);
+  	++si;
+	}
+  while(ti != textures.end()) {
+  	SDL_DestroyTexture(ti->second);
+  	++ti;
+	}
+  while(fi != images.end()) {
+    std::cout << "deleting " << fi->first << std::endl;
+    delete fi->second;
+    ++fi;
   }
 
   // Free multi-image containers
