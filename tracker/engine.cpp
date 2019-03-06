@@ -40,6 +40,17 @@ void Engine::draw() const {
   spinningStar->draw();
 
   viewport.draw();
+
+  std::stringstream fps;
+  std::string fpsString;
+  fps << clock.getFps();
+  fps >> fpsString;
+  std::cout << fpsString << std::endl;
+  int y = Gamedata::getInstance().getXmlInt("view/height");
+  io.writeText(fpsString, 100, y-100);
+  SDL_Color color = {255,255,255,255};
+  io.writeText("Zeandre Lindsey", 100, y-50, color);
+
   SDL_RenderPresent(renderer);
 }
 
@@ -69,6 +80,21 @@ void Engine::play() {
   FrameGenerator frameGen;
 
   while ( !done ) {
+
+    std::stringstream fps;
+    std::string fpsString;
+
+    fps << clock.getFps();
+
+    fps >> fpsString;
+
+    std::cout << fpsString << std::endl;
+
+
+    //int y = Gamedata::getInstance().getXmlInt("view/height");
+
+    io.writeText(fpsString, 100, 100);
+
     // The next loop polls for events, guarding against key bounce:
     while ( SDL_PollEvent(&event) ) {
       keystate = SDL_GetKeyboardState(NULL);
