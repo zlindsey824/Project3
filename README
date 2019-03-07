@@ -1,23 +1,23 @@
-Name:
+Name: Zeandre Lindsey
 
-Course:
+Course: CPSC 4160
 
-Clemson Email Address:
+Clemson Email Address: zlindse@g.clemson.edu
 
 Project no: #3
 
-Project due date:
+Project due date: 4 March 2019
 
-Project description:
+Project description: Example use of polymorphism for animation
 
-where did I get my sprites, including background:
+where did I get my sprites, including background: I made them
 
-What is the theme of my animation:
+What is the theme of my animation: Angels flying around the land and sky
 
-Did I make a polymorphic vector:  Yes or No
+Did I make a polymorphic vector:  Yes
 
-What do I like better: GoF Singleton or Meyer's Singleton?
+What do I like better: GoF Singleton or Meyer's Singleton? Meyers
 
-The easiest part of this project:
+The easiest part of this project: Converting the while loops to for loops
 
-Problems that I had in completing this project:
+Problems that I had in completing this project: Understanding where to go adjust different things like displaying the FPS and converting the singletons and the like.

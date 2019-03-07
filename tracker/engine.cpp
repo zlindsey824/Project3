@@ -10,9 +10,12 @@
 #include "engine.h"
 #include "frameGenerator.h"
 
+int numSprites = 10;
+
 Engine::~Engine() {
-  delete star;
-  delete spinningStar;
+  std::vector<Drawable*>::iterator it = sprites.begin();
+  while (it != sprites.end())
+    it = sprites.erase(it);
   std::cout << "Terminating program" << std::endl;
 }
 
@@ -21,23 +24,30 @@ Engine::Engine() :
   io( IoMod::getInstance() ),
   clock( Clock::getInstance() ),
   renderer( rc.getRenderer() ),
-  world("back", Gamedata::getInstance().getXmlInt("back/factor") ),
+  clouds("clouds", Gamedata::getInstance().getXmlInt("clouds/factor") ),
+  mountains("mountains", Gamedata::getInstance().getXmlInt("mountains/factor") ),
   viewport( Viewport::getInstance() ),
-  star(new Sprite("YellowStar")),
-  spinningStar(new MultiSprite("SpinningStar")),
+  sprites(),
   currentSprite(0),
   makeVideo( false )
 {
-  star->setScale(1.5);
-  Viewport::getInstance().setObjectToTrack(star);
+  for (int i = 0; i < numSprites; i++){
+    if (i % 3 == 0)
+      sprites.push_back(new Sprite("AngelStand"));
+    else
+      sprites.push_back(new MultiSprite("AngelRun"));
+  }
+  sprites[0]->setScale(1.5);
+  Viewport::getInstance().setObjectToTrack(sprites[0]);
   std::cout << "Loading complete" << std::endl;
 }
 
 void Engine::draw() const {
-  world.draw();
+  clouds.draw();
+  mountains.draw();
 
-  star->draw();
-  spinningStar->draw();
+  for (int i = 0; i < numSprites; i++)
+    sprites[i]->draw();
 
   viewport.draw();
 
@@ -55,21 +65,19 @@ void Engine::draw() const {
 }
 
 void Engine::update(Uint32 ticks) {
-  star->update(ticks);
-  spinningStar->update(ticks);
-  world.update();
+  for (int i = 0; i < numSprites; i++)
+    sprites[i]->update(ticks);
+  clouds.update();
+  mountains.update();
   viewport.update(); // always update viewport last
 }
 
 void Engine::switchSprite(){
   ++currentSprite;
-  currentSprite = currentSprite % 2;
-  if ( currentSprite ) {
-    Viewport::getInstance().setObjectToTrack(spinningStar);
-  }
-  else {
-    Viewport::getInstance().setObjectToTrack(star);
-  }
+  currentSprite = currentSprite % numSprites;
+
+  Viewport::getInstance().setObjectToTrack(sprites[currentSprite]);
+
 }
 
 void Engine::play() {

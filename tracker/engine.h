@@ -21,11 +21,11 @@ private:
   Clock& clock;
 
   SDL_Renderer * const renderer;
-  World world;
+  World clouds;
+  World mountains;
   Viewport& viewport;
 
-  Drawable* star;
-  Drawable* spinningStar;
+  std::vector<Drawable*> sprites;
   int currentSprite;
 
   bool makeVideo;

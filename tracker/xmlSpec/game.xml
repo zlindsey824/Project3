@@ -1,6 +1,6 @@
 <?xml version = "1.0"?>
 <GameData>
-<!-- screenTitle is also used to identify you and your animation. 
+<!-- screenTitle is also used to identify you and your animation.
      So make sure to include your name as part of the screenTitle -->
 <title>The Tracker Framework</title>
 <maxStringSize>50</maxStringSize>
@@ -9,7 +9,7 @@
 <period>17</period>
 
 <maxFrames>300</maxFrames>
-<username>malloy</username>
+<username>zlindse</username>
 
 <view>
   <width>854</width>
@@ -28,6 +28,18 @@
   <transparency>false</transparency>
 </back>
 
+<clouds>
+  <file>assets/cloudlayer.png</file>
+  <factor>2</factor>
+  <transparency>false</transparency>
+</clouds>
+
+<mountains>
+  <file>assets/mountainlayer.png</file>
+  <factor>1</factor>
+  <transparency>false</transparency>
+</mountains>
+
 <font name="font">
   <file>fonts/arial.ttf</file>
   <size>24</size>
@@ -37,10 +49,28 @@
   <alpha>0</alpha>
 </font>
 
+<AngelRun>
+  <file>assets/angel_anim_walk_LR.png</file>
+  <startLoc x="50" y="140"/>
+  <frames>12</frames>
+  <frameInterval>75</frameInterval>
+  <speedX>200</speedX>
+  <speedY>200</speedY>
+  <transparency>true</transparency>
+</AngelRun>
+
+<AngelStand>
+  <file>assets/neo_angel.png</file>
+  <startLoc x="227" y="240"/>
+  <speedX>300</speedX>
+  <speedY>300</speedY>
+  <transparency>false</transparency>
+</AngelStand>
+
 <SpinningStar>
   <file>assets/stars.png</file>
   <startLoc x="50" y="140"/>
-  <frames>4</frames>
+  <frames>6</frames>
   <frameInterval>50</frameInterval>
   <speedX>200</speedX>
   <speedY>200</speedY>
